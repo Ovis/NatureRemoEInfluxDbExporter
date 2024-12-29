@@ -1,0 +1,19 @@
+services:
+  natureremoeinfluxdbexporter:
+    build:
+      context: .
+      dockerfile: bin/Dockerfile
+    container_name: natureremoeinfluxdbexporter
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - NatureRemoOption:AccessToken=
+      - NatureRemoOption:Interval=15
+      - InfluxDbOption:Url=http://localhost:8086/
+      - InfluxDbOption:Token=
+      - InfluxDbOption:Bucket=
+      - InfluxDbOption:Org=
+      - Logging:LogLevel:Default=Warning
+      - Logging:LogLevel:Microsoft.Hosting.Lifetime=Warning
+    volumes:
+      - ./logs:/app/bin/logs
+    restart: always
